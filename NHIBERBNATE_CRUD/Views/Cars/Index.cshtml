@@ -1,0 +1,48 @@
+﻿@model IEnumerable<NHIBERBNATE_CRUD.Models.Car>
+
+@{
+    ViewData["Title"] = "Registered cars";
+}
+
+<h1>Registered cars</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-outline-success btn-sm">New car</a>
+</p>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CarId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Number)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CarId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Number)
+            </td>
+            <td>
+                <a asp-controller="Cars" asp-action="Update" asp-route-carId="@item.CarId" class="btn btn-outline-info btn-sm">Update</a> &emsp;
+                <form asp-controller="Cars" asp-action="Delete" asp-route-carId="@item.CarId" style="display: inline-block">
+                    <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
+                </form>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
